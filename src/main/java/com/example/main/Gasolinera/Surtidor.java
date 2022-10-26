@@ -1,20 +1,33 @@
 package com.example.main.Gasolinera;
-import java.util.concurrent.Semaphore;
+//import java.util.concurrent.Semaphore;
 
-import java.util.logging.Logger;
-import java.util.logging.Level;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class Surtidor implements Runnable{
-    Coche enEsperaCoche[];
-    Semaphore semaforo;
+//import java.util.logging.Logger;
+//import java.util.logging.Level;
+
+public class Surtidor {
+
+    //Semaphore semaforo;
+
+    ReentrantLock cerrojo;
+
     //private static Logger logger = LoggerFactory.getLogger(Surtidor.class);
 
 
     public Surtidor() {
-        this.enEsperaCoche = new Coche[5];
-        this.semaforo = new Semaphore(1);
+        this.cerrojo = new ReentrantLock();
     }
 
+    public void ocupar() {
+        cerrojo.lock();
+    }
+    public void soltar() {
+        cerrojo.unlock();
+    }
+
+
+    /* 
     public void run() {
         while(true){
             if(enEsperaCoche[0] != null){
@@ -38,7 +51,7 @@ public class Surtidor implements Runnable{
                 }
             }
         }
-    }
+    }*/
 
     
 }
