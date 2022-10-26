@@ -6,14 +6,15 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class carLanzador implements Runnable{
+public class carManager implements Runnable{
 
     private List<Coche> coches;
     private List<Surtidor> surtidores;
 
     int t;
     int cochesALanzar;
-    public carLanzador(int cochesALanzar, int tiempoEntreCoche) {
+    
+    public carManager(int cochesALanzar, int tiempoEntreCoche) {
         this.cochesALanzar = cochesALanzar;
         this.t= tiempoEntreCoche;
 
@@ -25,9 +26,18 @@ public class carLanzador implements Runnable{
             this.surtidores.add(s);
         }
         for(int i = 0; i < cochesALanzar; i++){
-            Coche c = new Coche();
+            Coche c = new Coche(this);
             this.coches.add(c);
         }
+    }
+
+    public Surtidor buscaSurtidorLibre(){
+        for(Surtidor s: surtidores){
+            if(!s.cerrojo.isLocked()){
+                return s;
+            }
+        }
+        return null;
     }
 
     public void run() {

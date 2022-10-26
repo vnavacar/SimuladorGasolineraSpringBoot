@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.main.Gasolinera.Coche;
 import com.example.main.Gasolinera.Surtidor;
-import com.example.main.Gasolinera.carLanzador;
+import com.example.main.Gasolinera.carManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class main {
 		SpringApplication.run(main.class, args);
 
 
-		carLanzador lanzador = new carLanzador(10, 3);
+		carManager lanzador = new carManager(10, 3);
 		Thread jornada = new Thread(lanzador);
 		jornada.start();
 		
