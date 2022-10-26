@@ -3,11 +3,11 @@ package com.example.main.Gasolinera;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Coche extends Thread{
+public class Coche implements Runnable{
     private static Logger logger = LoggerFactory.getLogger(Coche.class);
     boolean repostado;
     boolean pagado;
-    int id;
+    public static int id;
 
     public Coche(int id) {
         this.repostado = false;
@@ -15,7 +15,7 @@ public class Coche extends Thread{
         this.id = id;
     }
 
-    public void repostado() {
+    public void repostado() throws InterruptedException{
         this.repostado = true;
         //System.out.println("Coche " + id + " repostado");
         logger.info("Coche " + id + " repostado");
