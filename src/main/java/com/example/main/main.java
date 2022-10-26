@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.main.Gasolinera.Coche;
 import com.example.main.Gasolinera.Surtidor;
+import com.example.main.Gasolinera.carLanzador;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 public class main {
-	private static Logger logger = LoggerFactory.getLogger(main.class);
+	private Logger logger = LoggerFactory.getLogger(main.class);
 
 
 
@@ -20,15 +21,9 @@ public class main {
 		SpringApplication.run(main.class, args);
 
 
-		for(int i = 0; i < 50; i++){
-			Coche coche = new Coche(i);
-			
-		}
-		for(int i= 0; i< 5; i++){
-			Surtidor surtidor = new Surtidor();
-			surtidor.start();
-		}
-		
+		carLanzador lanzador = new carLanzador(10, 3);
+		Thread jornada = new Thread(lanzador);
+		jornada.start();
 		
 		
 	}

@@ -1,0 +1,53 @@
+package com.example.main.Gasolinera;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class carLanzador implements Runnable{
+
+    private List<Coche> coches;
+    private List<Surtidor> surtidores;
+
+    int t;
+    int cochesALanzar;
+    public carLanzador(int cochesALanzar, int tiempoEntreCoche) {
+        this.cochesALanzar = cochesALanzar;
+        this.t= tiempoEntreCoche;
+
+        this.surtidores = new ArrayList<>(4);
+        this.coches = new LinkedList<>();
+
+        for(int i = 0; i < 5; i++){
+            Surtidor s = new Surtidor();
+            this.surtidores.add(s);
+        }
+        for(int i = 0; i < cochesALanzar; i++){
+            Coche c = new Coche();
+            this.coches.add(c);
+        }
+    }
+
+    public void run() {
+        /* 
+        for(int i = 0; i < cochesALanzar; i++){
+            try{
+                Thread.sleep(t);
+                Coche coche = new Coche(i);
+                coche.run();
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+
+
+
+        }*/
+        ExecutorService executor = Executors.newFixedThreadPool(coches.size());
+        for(Coche c : coches){
+            executor.execute(c);
+        }
+    }
+    
+}
