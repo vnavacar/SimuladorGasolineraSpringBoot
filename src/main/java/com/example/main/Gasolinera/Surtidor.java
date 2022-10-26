@@ -1,6 +1,6 @@
 package com.example.main.Gasolinera;
 
-public class Surtidor extends Thread{
+public class Surtidor implements Runnable{
     Coche enEsperaCoche[];
 
 
@@ -14,7 +14,7 @@ public class Surtidor extends Thread{
                 for(int i = 0; i < enEsperaCoche.length; i++){
                     if(enEsperaCoche[i] != null){
                         try{
-                            Surtidor.sleep((int)(Math.random()*5+5));
+                            Thread.sleep((int)(Math.random()*5+5));
                             enEsperaCoche[i].repostado();
                             enEsperaCoche[i] = null; // deberia enviar el coche a la caja en lugar de obliterarlo
                         }catch(InterruptedException e){
