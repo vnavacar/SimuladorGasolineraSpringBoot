@@ -3,7 +3,7 @@ package com.example.main.Gasolinera;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Coche {
+public class Coche extends Thread{
     private static Logger logger = LoggerFactory.getLogger(Coche.class);
     boolean repostado;
     boolean pagado;

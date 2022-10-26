@@ -1,10 +1,14 @@
 package com.example.main.Gasolinera;
+import java.util.concurrent.Semaphore;
 
 public class Caja implements Runnable {
     
     Coche enEsperaCoche[];
+    Semaphore semaforo;
 
     public Caja() {
+
+        this.semaforo = new Semaphore(1);
         
     }
 
