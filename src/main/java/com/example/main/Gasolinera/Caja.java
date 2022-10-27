@@ -1,17 +1,27 @@
 package com.example.main.Gasolinera;
-import java.util.concurrent.Semaphore;
+//import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class Caja implements Runnable {
+public class Caja {
     
     Coche enEsperaCoche[];
-    Semaphore semaforo;
+    //Semaphore semaforo;
+    ReentrantLock cerrojo;
 
     public Caja() {
 
-        this.semaforo = new Semaphore(1);
+        this.cerrojo = new ReentrantLock();
         
     }
 
+    public void ocupar() {
+        cerrojo.lock();
+    }
+    public void soltar() {
+        cerrojo.unlock();
+    }
+
+/* 
     public void run() {
         
         
@@ -34,7 +44,7 @@ public class Caja implements Runnable {
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 
 
 }

@@ -41,11 +41,11 @@ public class Coche implements Runnable{
         logger.info("El coche: "+id+" esta buscando un surtidor libre");
         s = manager.buscaSurtidorLibre();
         s.ocupar();
-
+        Thread.sleep((int)(Math.random()*5+5)*1000); // entre 5 y 10 segundos de repostaje
         this.repostado = true;
         logger.info("Coche " + id + " repostado");
     }
-    public void pagar() {
+    public void pagar throws InterruptedException() {
         this.pagado = true;
         logger.info("Coche " + id + " pagado");
     }
