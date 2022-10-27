@@ -10,6 +10,7 @@ public class carManager implements Runnable{
 
     private List<Coche> coches;
     private List<Surtidor> surtidores;
+    private List<Caja> cajas;	
 
     int t;
     int cochesALanzar;
@@ -29,12 +30,26 @@ public class carManager implements Runnable{
             Coche c = new Coche(this);
             this.coches.add(c);
         }
+        for(int i = 0; i < 1; i++){
+            Caja c = new Caja();
+            this.cajas.add(c);
+        }
+
     }
 
     public Surtidor buscaSurtidorLibre(){
         for(Surtidor s: surtidores){
             if(!s.cerrojo.isLocked()){
                 return s;
+            }
+        }
+        return null;
+    }
+
+    public Caja buscaCajaLibre(){
+        for(Caja c: cajas){
+            if(!c.cerrojo.isLocked()){
+                return c;
             }
         }
         return null;
