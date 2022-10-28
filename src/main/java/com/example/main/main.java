@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 public class main {
-	private Logger logger = LoggerFactory.getLogger(main.class);
+	private static Logger logger = LoggerFactory.getLogger(main.class);
 
 
 
@@ -21,8 +21,9 @@ public class main {
 		SpringApplication.run(main.class, args);
 
 
-		carManager lanzador = new carManager(10, 3);
+		carManager lanzador = new carManager(10, 3000);
 		Thread jornada = new Thread(lanzador);
+		logger.info("Iniciando jornada");
 		jornada.start();
 		
 		

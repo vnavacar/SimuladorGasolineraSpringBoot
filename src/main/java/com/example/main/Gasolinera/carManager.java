@@ -72,6 +72,12 @@ public class carManager implements Runnable{
         ExecutorService executor = Executors.newFixedThreadPool(coches.size());
         for(Coche c : coches){
             executor.execute(c);
+            try{
+                Thread.sleep(t);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+
         }
     }
     

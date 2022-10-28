@@ -13,6 +13,7 @@ public class Coche implements Runnable{
     public Coche(carManager manager) {
         this.manager = manager;
         this.repostado = false;
+        this.pagado = false;
     }
 
 
@@ -32,7 +33,7 @@ public class Coche implements Runnable{
                 logger.error(e.getMessage(), e);
             }
         }
-
+        logger.info("Coche {} terminado", id);
     }
 
 
@@ -46,14 +47,15 @@ public class Coche implements Runnable{
         this.repostado = true;
         logger.info("Coche " + id + " repostado");
     }
-    public void pagar throws InterruptedException() {
+
+    public void pagar() throws InterruptedException{
         logger.info("El coche: "+id+" esta buscando una caja libre");
         Caja c = manager.buscaCajaLibre();
         c.ocupar();
         Thread.sleep(3000); // 3 segundos para pagar
         c.soltar();
         this.pagado = true;
-        logger.info("Coche " + id + " pagado");
+        logger.info("Coche " + id + " a pagado");
     }
 
 }
