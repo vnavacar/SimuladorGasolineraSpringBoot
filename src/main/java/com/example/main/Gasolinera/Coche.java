@@ -27,13 +27,13 @@ public class Coche implements Runnable{
                 }else if(!pagado){
                     pagar();
                 }else{
-                    break;
+                    autodestruirse();
                 }
             }catch(InterruptedException e){
                 logger.error(e.getMessage(), e);
             }
         }
-        logger.info("Coche {} terminado", id);
+
     }
 
 
@@ -56,6 +56,11 @@ public class Coche implements Runnable{
         c.soltar();
         this.pagado = true;
         logger.info("Coche " + id + " a pagado");
+    }
+
+    public void autodestruirse() throws InterruptedException{
+        logger.info("Coche " + id + " ha salido");
+        System.exit(0);
     }
 
 }
